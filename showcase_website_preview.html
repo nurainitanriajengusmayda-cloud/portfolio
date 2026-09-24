@@ -1,0 +1,900 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Design Trends 2026 — Immersive Showcase</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              lime: '#BDFF00',
+              bg: '#030303',
+              surface: '#101010',
+              card: '#161618',
+              border: '#1F1F23',
+              muted: '#8E8E93',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out 3s infinite',
+            'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(1deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.2' },
+              '50%': { opacity: '0.45' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #030303;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom Glassmorphism & Claymorphism Utilities */
+    .glass-pill {
+      background: rgba(16, 16, 16, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card {
+      background: rgba(22, 22, 24, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .glow-lime {
+      box-shadow: 0 0 25px rgba(189, 255, 0, 0.35);
+    }
+
+    .glow-magenta {
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.25);
+    }
+
+    .3d-perspective {
+      perspective: 1200px;
+    }
+
+    /* 3D Cylindrical Carousel Styling */
+    .carousel-3d-container {
+      perspective: 1000px;
+      overflow: visible;
+    }
+
+    .carousel-3d-ring {
+      position: relative;
+      width: 160px;
+      height: 200px;
+      margin: 0 auto;
+      transform-style: preserve-3d;
+      animation: spin3d 25s linear infinite;
+    }
+
+    .carousel-3d-ring:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes spin3d {
+      from { transform: rotateY(0deg) rotateX(12deg); }
+      to { transform: rotateY(360deg) rotateX(12deg); }
+    }
+
+    .carousel-3d-card {
+      position: absolute;
+      width: 160px;
+      height: 200px;
+      left: 0;
+      top: 0;
+      border-radius: 20px;
+      backface-visibility: visible;
+      cursor: pointer;
+      transition: filter 0.3s, transform 0.3s;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .carousel-3d-card:hover {
+      filter: brightness(1.25);
+    }
+
+    /* ===== Coverflow 3D Carousel ===== */
+    .coverflow-stage {
+      perspective: 1400px;
+      transform-style: preserve-3d;
+    }
+    .cf-card {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, z-index 0s;
+      will-change: transform;
+      cursor: pointer;
+    }
+    .cf-1 { transform: rotateY(18deg); z-index: 1; }
+    .cf-2 { transform: rotateY(9deg);  z-index: 2; }
+    .cf-3 { transform: rotateY(0deg);  z-index: 3; }
+    .cf-4 { transform: rotateY(-9deg); z-index: 2; }
+    .cf-5 { transform: rotateY(-18deg); z-index: 1; }
+    .cf-card:hover {
+      transform: rotateY(0deg) translateZ(90px) scale(1.2) !important;
+      z-index: 50;
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.75);
+    }
+
+    /* Custom Grid Background Lines */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Smooth anchor scrolling */
+    html { scroll-behavior: smooth; }
+    [id] { scroll-margin-top: 90px; }
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="relative min-h-screen selection:bg-[#BDFF00] selection:text-black antialiased">
+
+  <!-- ========================================== -->
+  <!-- BACKGROUND NEON ATMOSPHERIC GLOWS          -->
+  <!-- ========================================== -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-[10%] left-[15%] w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[140px] animate-pulse-glow"></div>
+    <div class="absolute top-[20%] -right-[10%] w-[600px] h-[600px] bg-fuchsia-600/25 rounded-full blur-[160px] animate-pulse-glow"></div>
+    <div class="absolute top-[60%] left-[-5%] w-[550px] h-[550px] bg-lime-500/15 rounded-full blur-[150px]"></div>
+    <div class="absolute bottom-[5%] right-[15%] w-[500px] h-[500px] bg-red-600/20 rounded-full blur-[140px]"></div>
+  </div>
+
+  <!-- Grid overlay -->
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0 opacity-60"></div>
+
+  <!-- ========================================== -->
+  <!-- FLOATING NAVIGATION BAR                    -->
+  <!-- ========================================== -->
+  <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-4">
+    <nav class="glass-pill rounded-full px-6 py-3 flex items-center justify-between gap-8 max-w-4xl w-full shadow-2xl transition-all duration-300">
+      <!-- Logo / Brand -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-8 h-8 rounded-lg bg-[#BDFF00] flex items-center justify-center text-black font-extrabold text-sm shadow-md group-hover:scale-105 transition-transform">
+          CP
+        </div>
+        <span class="font-bold tracking-tight text-white text-sm sm:text-base">CREATIVE PORTFOLIO</span>
+      </a>
+
+      <!-- Menu Links -->
+      <div class="hidden md:flex items-center gap-3 lg:gap-5 text-xs lg:text-sm font-medium text-brand-muted justify-center whitespace-nowrap">
+        <a href="#hero" class="text-white transition-colors hover:text-[#BDFF00]">Home</a>
+        <a href="#about" class="hover:text-white transition-colors">About Me</a>
+        <a href="#games" class="hover:text-white transition-colors">Real Estate</a>
+        <a href="#manual-works" class="hover:text-white transition-colors">Manual Works</a>
+        <a href="#building" class="hover:text-white transition-colors">A Year of Design</a>
+        <a href="#organization" class="hover:text-white transition-colors">Organization Branding</a>
+      </div>
+
+      <!-- Action Button -->
+      <a href="https://www.instagram.com/tcenghhh/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" class="bg-[#BDFF00] hover:bg-[#a3dc00] text-black font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(189,255,0,0.4)] hover:scale-105 flex items-center gap-2">
+        <span>Contact Me</span>
+        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+      </a>
+    </nav>
+  </header>
+
+  <main class="relative z-10 pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-28">
+
+    <!-- ========================================== -->
+    <!-- SECTION 1: HERO COVER (GAMBAR 1 MATCH)    -->
+    <!-- ========================================== -->
+    <section id="hero" class="text-center pt-6 space-y-8 relative">
+      <!-- Metallic PORTFOLIO Title Block -->
+      <div class="relative inline-block mx-auto">
+        <!-- Chrome Metallic PORTFOLIO Title -->
+        <h1 class="text-[clamp(2.5rem,11vw,9rem)] font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-neutral-100 via-neutral-300 to-neutral-500 uppercase filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] whitespace-nowrap">
+          PORTFOLIO
+        </h1>
+
+        <!-- Subtitle Role -->
+        <p class="text-brand-muted text-base sm:text-lg font-medium tracking-wide pt-4">
+          Motion Graphic Designer and Video Editor
+        </p>
+
+        <!-- Software Tool Pills -->
+        <div class="flex flex-wrap justify-center gap-3 pt-6">
+          <span class="px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-medium text-white/90 backdrop-blur-md hover:border-white/40 transition-colors">Adobe Illustrator</span>
+          <span class="px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-medium text-white/90 backdrop-blur-md hover:border-white/40 transition-colors">CapCut</span>
+          <span class="px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-medium text-white/90 backdrop-blur-md hover:border-white/40 transition-colors">Canva</span>
+          <span class="px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-xs font-medium text-white/90 backdrop-blur-md hover:border-white/40 transition-colors">Figma</span>
+        </div>
+      </div>
+
+      <!-- About Me -->
+      <div id="about" class="max-w-5xl mx-auto pt-10">
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-10 flex items-center gap-8">
+          <div class="flex-1 min-w-0 text-left">
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Hello, I&rsquo;m Ajeng</h2>
+            <div class="text-brand-muted text-sm sm:text-base leading-relaxed text-justify space-y-4">
+              <p>Hi, I&rsquo;m Ajeng, a DKV student who enjoys exploring the creative world through design, content, and visual communication. I like turning simple ideas into visuals that feel interesting and have their own story.</p>
+              <p>I&rsquo;m always curious to try new things, learn different tools, and develop my skills through projects and experiences. For me, design isn&rsquo;t only about making something look good, but also about how an idea can be delivered and understood through a visual.</p>
+            </div>
+          </div>
+          <div class="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 aspect-square shrink-0 rounded-2xl border border-white/15 bg-white/5 overflow-hidden flex items-center justify-center shadow-lg">
+            <img src="IMG_20260922_103737.jpg.jpeg" alt="About Me photo" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+
+      <!-- Education + Experience side by side -->
+      <div class="max-w-5xl mx-auto pt-10 grid grid-cols-2 gap-4 sm:gap-8 items-stretch">
+
+        <!-- Experience -->
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-5 sm:p-8 text-left">
+          <h2 class="text-xl sm:text-3xl font-bold text-white mb-5">EXPERIENCE</h2>
+          <div class="space-y-5">
+            <div class="border-l-2 border-white/15 pl-4">
+              <h3 class="text-sm sm:text-lg font-semibold text-white">PKL — PT Sukses Diamond Propertindo</h3>
+              <p class="text-brand-muted text-xs sm:text-sm mt-1">Property Marketing &amp; Creative Content</p>
+              <p class="text-brand-muted text-xs sm:text-sm mt-1">2026</p>
+            </div>
+            <div class="border-l-2 border-white/15 pl-4">
+              <h3 class="text-sm sm:text-lg font-semibold text-white">Koordinator Kreatif — Passel Jaya</h3>
+              <p class="text-brand-muted text-xs sm:text-sm mt-1">2026 — Present</p>
+            </div>
+            <div class="border-l-2 border-white/15 pl-4">
+              <h3 class="text-sm sm:text-lg font-semibold text-white">Project Video PPG Guru</h3>
+              <p class="text-brand-muted text-xs sm:text-sm mt-1">Concept, Shooting &amp; Editing</p>
+              <p class="text-brand-muted text-xs sm:text-sm mt-1">2025</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education + Software column -->
+        <div class="flex flex-col gap-6">
+
+          <!-- Education -->
+          <div class="bg-white/5 border border-white/10 rounded-3xl p-5 sm:p-8 text-left">
+            <h2 class="text-xl sm:text-3xl font-bold text-white mb-5">EDUCATION</h2>
+            <div class="space-y-5">
+              <div class="border-l-2 border-white/15 pl-4">
+                <h3 class="text-sm sm:text-lg font-semibold text-white">SMK Negeri 10 Surabaya</h3>
+                <p class="text-brand-muted text-xs sm:text-sm mt-1">Visual Communication Design (DKV)</p>
+                <p class="text-brand-muted text-xs sm:text-sm mt-1">2024 — Present</p>
+              </div>
+              <div class="border-l-2 border-white/15 pl-4">
+                <h3 class="text-sm sm:text-lg font-semibold text-white">SMP GIKI 3 Surabaya</h3>
+                <p class="text-brand-muted text-xs sm:text-sm mt-1">2021 — 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Software -->
+          <div class="bg-white/5 border border-white/10 rounded-3xl p-5 sm:p-8 text-left flex-1 items-center justify-center flex-row">
+            <h2 class="text-xl sm:text-3xl font-bold text-white mb-5">SOFTWARE</h2>
+            <div class="flex flex-wrap gap-3">
+              <img src="Illustrator-Logo.png" alt="Adobe Illustrator" class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white/10 p-2 border border-white/10 object-contain">
+              <img src="64fb219ade937671b42e011e_capcut logo png.png" alt="CapCut" class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white/10 p-2 border border-white/10 object-contain">
+              <img src="1656733637logo-canva-png.png" alt="Canva" class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white/10 p-2 border border-white/10 object-contain">
+              <img src="1706c9f16bd08eb5e03f1df3e0a94a1c.png" alt="Software logo" class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white/10 p-2 border border-white/10 object-contain">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Glow Accent Spotlight from Image 1 -->
+      <div class="w-64 h-24 mx-auto bg-yellow-400/30 rounded-full blur-3xl -mt-6 pointer-events-none"></div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- SECTION 2: GAME STORE (GAMBAR 2 MATCH)     -->
+    <!-- ========================================== -->
+    <section id="games" class="bg-[#121318] rounded-[36px] p-6 sm:p-10 border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.8)] relative overflow-hidden" style="margin-top:2rem">
+      <!-- Background subtle grid line overlay -->
+      <div class="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none"></div>
+
+      <!-- Top Switch Bar Header -->
+      <div class="relative z-10 flex items-center justify-between pb-8 border-b border-white/5 text-xs font-medium text-white/70">
+        <div class="flex items-center gap-4 sm:gap-6">
+          <span class="flex items-center gap-1.5 text-white font-bold bg-white/10 px-3 py-1.5 rounded-full"><i data-lucide="gamepad-2" class="w-3.5 h-3.5 text-white"></i> Games</span>
+          <span class="hover:text-white transition-colors cursor-pointer text-neutral-400">Store</span>
+          <div class="relative hidden sm:block">
+            <input type="text" placeholder="Search Games..." class="bg-white/5 border border-white/10 rounded-full pl-8 pr-4 py-1.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-white/30 w-44">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-neutral-400 absolute left-2.5 top-2"></i>
+          </div>
+        </div>
+
+        <!-- Nintendo Logo Center Icon -->
+        <div class="w-10 h-10 rounded-2xl bg-white flex items-center justify-center font-black text-black shadow-lg hover:scale-105 transition-transform">
+          <svg class="w-6 h-6 text-black fill-current" viewBox="0 0 24 24">
+            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h3V4H7zm7 0v16h3a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3h-3zm-6.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm10 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/>
+          </svg>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-yellow-400 font-bold text-xs flex items-center gap-1.5 shadow-inner">
+            <span class="w-4 h-4 rounded-full bg-yellow-400 text-black font-extrabold text-[9px] flex items-center justify-center">🪙</span>
+            1 290.0000
+          </span>
+          <div class="w-9 h-9 rounded-full bg-neutral-800 border-2 border-white/20 overflow-hidden shadow-md">
+            <img src="https://placehold.co/100x100/1e293b/fff?text=🤠" alt="User Avatar" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Game Store Hero Title -->
+      <div class="relative z-10 text-center pt-8 pb-4 space-y-3">
+        <h2 class="text-4xl sm:text-6xl font-black tracking-tight text-white pt-1 leading-tight">
+          Real Estate Promotion
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-400 max-w-md mx-auto leading-relaxed">
+          Property Marketing & Visual Content
+        </p>
+      </div>
+
+      <!-- Row of Cards Layout -->
+      <div class="relative z-10 pt-8 pb-4 flex items-center justify-center overflow-visible coverflow-stage">
+        <div class="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4 w-full max-w-5xl">
+
+          <!-- Card 1 -->
+          <div class="cf-card cf-1 w-40 sm:w-48 lg:w-52 flex flex-col bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-xl group" onclick="openImageModal('FEED 3.png')">
+            <img src="FEED 3.png" alt="Hack Property" class="aspect-[4/5] w-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="p-3 sm:p-4">
+              <h3 class="font-black text-white text-sm sm:text-base leading-tight">Hack Property</h3>
+              <p class="text-[10px] sm:text-xs text-neutral-400 mt-1">Design Feed</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="cf-card cf-2 w-40 sm:w-48 lg:w-52 flex flex-col bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-xl group" onclick="openImageModal('FEED 12.png')">
+            <img src="FEED 12.png" alt="Alana Tambak Oso" class="aspect-[4/5] w-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="p-3 sm:p-4">
+              <h3 class="font-black text-white text-sm sm:text-base leading-tight">Alana Tambak Oso</h3>
+              <p class="text-[10px] sm:text-xs text-neutral-400 mt-1">Design Feed</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="cf-card cf-3 w-40 sm:w-48 lg:w-52 flex flex-col bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-xl group" onclick="openImageModal('FEED-04.png')">
+            <img src="FEED-04.png" alt="Hack Property" class="aspect-[4/5] w-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="p-3 sm:p-4">
+              <h3 class="font-black text-white text-sm sm:text-base leading-tight">Hack Property</h3>
+              <p class="text-[10px] sm:text-xs text-neutral-400 mt-1">Design Feed</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="cf-card cf-4 w-40 sm:w-48 lg:w-52 flex flex-col bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-xl group" onclick="openImageModal('FEED 4.png')">
+            <img src="FEED 4.png" alt="Pokemon" class="aspect-[4/5] w-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="p-3 sm:p-4">
+              <h3 class="font-black text-white text-sm sm:text-base leading-tight">Victory Home</h3>
+              <p class="text-[10px] sm:text-xs text-neutral-400 mt-1">Design Feed</p>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="cf-card cf-5 w-40 sm:w-48 lg:w-52 flex flex-col bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-xl group" onclick="openImageModal('FEED 8.png')">
+            <img src="FEED 8.png" alt="Alana Wonorejo" class="aspect-[4/5] w-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="p-3 sm:p-4">
+              <h3 class="font-black text-white text-sm sm:text-base leading-tight">Alana Wonorejo</h3>
+              <p class="text-[10px] sm:text-xs text-neutral-400 mt-1">Design Feed</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- SECTION 3: BENTO SHOWCASE — NINTENDO SWITCH-->
+    <!-- ========================================== -->
+    <!-- SECTION 2: BENTO SHOWCASE — NINTENDO SWITCH-->
+    <!-- ========================================== -->
+    <section id="manual-works" class="glass-card rounded-[32px] p-6 sm:p-10 border border-white/10 relative overflow-hidden">
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#BDFF00]">Interactive Collection</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white mt-1">Manual Works</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-colors">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button class="p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-colors">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Overlapping Floating Game Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 pt-4 pb-6">
+        
+        <!-- Card 1: Purple -->
+        <div class="bg-gradient-to-b from-purple-600 to-indigo-900 rounded-2xl p-4 flex flex-col justify-between h-64 shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-white/20 relative group overflow-hidden">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-purple-200">Action</span>
+          </div>
+          <div class="my-auto text-center py-2">
+            <img src="Portofolio (Website) (1).png" alt="Color Wheel" class="w-24 h-24 mx-auto rounded-xl object-cover shadow-lg border border-white/30 mb-2">
+            <p class="font-black text-white text-base">Color Wheel</p>
+          </div>
+          <button onclick="openImageModal('Portofolio (Website) (1).png')" class="w-full py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">View</button>
+        </div>
+
+        <!-- Card 2: Mario Red -->
+        <div class="bg-gradient-to-b from-red-500 to-red-800 rounded-2xl p-4 flex flex-col justify-between h-64 shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-white/20 relative group overflow-hidden">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-red-100">Platformer</span>
+          </div>
+          <div class="my-auto text-center py-2">
+            <img src="Portofolio (Website) (3).png" alt="Nirmana Line" class="w-24 h-24 mx-auto rounded-xl object-cover shadow-lg border border-white/30 mb-2">
+            <p class="font-black text-white text-base">Nirmana Line</p>
+          </div>
+          <button onclick="openImageModal('Portofolio (Website) (3).png')" class="w-full py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">View</button>
+        </div>
+
+        <!-- Card 3: Kirby Pink (Featured) -->
+        <div class="bg-gradient-to-b from-pink-400 to-rose-600 rounded-2xl p-4 flex flex-col justify-between h-64 shadow-2xl hover:-translate-y-3 transition-transform duration-300 border-2 border-white/40 relative group overflow-hidden ring-4 ring-pink-500/20">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-pink-900 bg-white/80 px-2 py-0.5 rounded-full">POPULAR</span>
+          </div>
+          <div class="my-auto text-center py-2">
+            <img src="Portofolio (Website) (2).png" alt="Nirmana Color" class="w-24 h-24 mx-auto rounded-xl object-cover shadow-lg border border-white/30 mb-2">
+            <p class="font-black text-white text-lg">Nirmana Color</p>
+          </div>
+          <button onclick="openImageModal('Portofolio (Website) (2).png')" class="w-full py-2 bg-white text-rose-600 text-xs font-bold rounded-lg shadow-md hover:bg-pink-50">View</button>
+        </div>
+
+        <!-- Card 4: Pokemon Green -->
+        <div class="bg-gradient-to-b from-emerald-500 to-teal-800 rounded-2xl p-4 flex flex-col justify-between h-64 shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-white/20 relative group overflow-hidden">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-100">RPG</span>
+          </div>
+          <div class="my-auto text-center py-2">
+            <img src="Portofolio (Website) (4).png" alt="Nirmana Dot" class="w-24 h-24 mx-auto rounded-xl object-cover shadow-lg border border-white/30 mb-2">
+            <p class="font-black text-white text-base">Nirmana Dot</p>
+          </div>
+          <button onclick="openImageModal('Portofolio (Website) (4).png')" class="w-full py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">View</button>
+        </div>
+
+        <!-- Card 5: Geometric Color Composition -->
+        <div class="bg-gradient-to-b from-cyan-500 to-blue-900 rounded-2xl p-4 flex flex-col justify-between h-64 shadow-xl hover:-translate-y-2 transition-transform duration-300 border border-white/20 relative group overflow-hidden">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-cyan-100">Visual</span>
+          </div>
+          <div class="my-auto text-center py-2">
+            <img src="Portofolio (Website).png" alt="Geometric Color Composition" class="w-24 h-24 mx-auto rounded-xl object-cover shadow-lg border border-white/30 mb-2">
+            <p class="font-black text-white text-base">Geometric Color Composition</p>
+          </div>
+          <button onclick="openImageModal('Portofolio (Website).png')" class="w-full py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-semibold rounded-lg backdrop-blur-sm">View</button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- SECTION 3: CURVED 3D RIBBON CAROUSEL       -->
+    <!-- ========================================== -->
+    <section id="building" class="space-y-6 text-center pt-6 relative">
+      <div>
+        <h2 class="text-5xl sm:text-7xl font-black text-white tracking-tight leading-none">A Year of<br/><span class="text-white">Building</span></h2>
+      </div>
+
+      <!-- 3D Rotating Cylinder Carousel Container -->
+      <div class="carousel-3d-container pt-16 pb-36 relative min-h-[380px] flex items-center justify-center">
+        <div class="carousel-3d-ring" id="carouselRing">
+
+          <!-- Card 1 -->
+          <div class="carousel-3d-card overflow-hidden bg-black" style="transform: rotateY(0deg) translateZ(360px);" onclick="openVideoModal('Copy of FEED.mp4')">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+              <source src="Copy of FEED.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="carousel-3d-card overflow-hidden bg-black" style="transform: rotateY(45deg) translateZ(360px);" onclick="openVideoModal('0724(4).mp4')">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+              <source src="0724(4).mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="carousel-3d-card overflow-hidden bg-black" style="transform: rotateY(90deg) translateZ(360px);" onclick="openImageModal('FEED 8.png')">
+            <img src="FEED 8.png" alt="Showreel" class="w-full h-full object-cover">
+          </div>
+
+          <!-- Card 4 -->
+          <div class="carousel-3d-card overflow-hidden bg-black" style="transform: rotateY(135deg) translateZ(360px);" onclick="openImageModal('anjaysf-20.png')">
+            <img src="anjaysf-20.png" alt="Design Work" class="w-full h-full object-cover">
+          </div>
+
+          <!-- Card 5 -->
+          <div class="carousel-3d-card overflow-hidden bg-black" style="transform: rotateY(180deg) translateZ(360px);" onclick="openVideoModal('Copy of FEED (1).mp4')">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover">
+              <source src="Copy of FEED (1).mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="carousel-3d-card overflow-hidden bg-black" style="transform: rotateY(225deg) translateZ(360px);" onclick="openImageModal('FEED 9.png')">
+            <img src="FEED 9.png" alt="Showreel" class="w-full h-full object-cover">
+          </div>
+
+          <!-- Card 7 -->
+          <div class="carousel-3d-card overflow-hidden bg-black" style="transform: rotateY(270deg) translateZ(360px);" onclick="openImageModal('FEED-04.png')">
+            <img src="FEED-04.png" alt="Design Work" class="w-full h-full object-cover">
+          </div>
+
+          <!-- Card 8 -->
+          <div class="carousel-3d-card overflow-hidden bg-black" style="transform: rotateY(315deg) translateZ(360px);" onclick="openImageModal('STRUKTUR KEPENGURUSAN.png')">
+            <img src="STRUKTUR KEPENGURUSAN.png" alt="Structure" class="w-full h-full object-cover">
+          </div>
+
+        </div>
+      </div>
+      <p class="text-xs text-brand-muted">Hover carousel to pause rotation • Click any card to inspect details</p>
+    </section>
+
+    <!-- Modal Popup for Carousel Cards -->
+    <div id="projectModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 transition-all duration-300">
+      <div class="glass-card max-w-lg w-full rounded-3xl p-6 border border-white/20 shadow-2xl relative space-y-5 animate-in fade-in zoom-in-95 duration-200">
+        <!-- Close Button -->
+        <button onclick="closeProjectModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+          ✕
+        </button>
+
+        <div class="flex items-center gap-3">
+          <div id="modalIcon" class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-lg bg-white/10">
+            🎨
+          </div>
+          <div>
+            <span id="modalCategory" class="text-xs font-bold uppercase tracking-widest text-brand-muted">Category</span>
+            <h3 id="modalTitle" class="text-2xl font-black text-white leading-tight">Project Title</h3>
+          </div>
+        </div>
+
+        <p id="modalDescription" class="text-sm text-neutral-300 leading-relaxed">
+          Detailed project overview description goes here.
+        </p>
+
+        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex justify-between text-xs text-neutral-400">
+            <span>Deliverables</span>
+            <span class="text-white font-medium">UI/UX, 3D Assets, Design System</span>
+          </div>
+          <div class="flex justify-between text-xs text-neutral-400">
+            <span>Year</span>
+            <span class="text-white font-medium">2025 – 2026</span>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-2">
+          <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-colors">
+            Close
+          </button>
+          <a href="#" class="px-6 py-2.5 rounded-full bg-[#BDFF00] hover:bg-[#a3dc00] text-black font-extrabold text-xs transition-transform hover:scale-105 flex items-center gap-1.5 shadow-md">
+            <span>View Case Study</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Lightbox (Manual Works) -->
+    <div id="imageModal" onclick="if(event.target===this)closeImageModal()" class="fixed inset-0 z-[60] bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+      <button onclick="closeImageModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg z-10">✕</button>
+      <img id="imageModalImg" src="" alt="Preview" class="max-w-full max-h-[85vh] rounded-2xl shadow-2xl border border-white/20">
+    </div>
+
+    <!-- Video Lightbox (Carousel) -->
+    <div id="videoModal" onclick="if(event.target===this)closeVideoModal()" class="fixed inset-0 z-[60] bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+      <button onclick="closeVideoModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-lg z-10">✕</button>
+      <video id="videoModalVideo" controls autoplay class="max-w-full max-h-[85vh] rounded-2xl shadow-2xl border border-white/20"></video>
+    </div>
+
+
+
+    <!-- ========================================== -->
+
+
+    <!-- ========================================== -->
+    <!-- SECTION 4: ENTERTAINMENT & MEDIA CARDS     -->
+    <!-- ========================================== -->
+    <section id="organization" class="relative rounded-[32px] p-6 sm:p-10 bg-gradient-to-b from-red-950/40 via-neutral-950 to-neutral-950 border border-red-900/30 overflow-hidden">
+      <!-- Deep Red Ambient Background Glow -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="relative z-10 space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-red-400">Featured Media System</span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Organization Branding</h3>
+          </div>
+          <span class="px-3 py-1 bg-red-500/20 text-red-300 border border-red-500/30 rounded-full text-xs font-semibold">Streaming 4K</span>
+        </div>
+
+        <!-- Netflix-style Movie Carousel -->
+        <div id="orgCarousel" class="overflow-x-auto overflow-y-hidden pb-4 pt-4 flex gap-3 sm:gap-4 no-scrollbar">
+
+          <!-- Movie 1 -->
+          <button onclick="openImageModal('1.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-red-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="1.png" alt="The Last of Us" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Ketua Umum</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 2 -->
+          <button onclick="openImageModal('2.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-blue-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="2.png" alt="Ted Lasso" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Wakil Ketua Umum</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 3 -->
+          <button onclick="openImageModal('3.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-purple-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="3.png" alt="Ant-Man Quantum" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Sekretaris</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 4 -->
+          <button onclick="openImageModal('4.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-amber-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="4.png" alt="Interstellar" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Sekretaris 1</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 5 -->
+          <button onclick="openImageModal('5.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-red-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="5.png" alt="New Series" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Sekretaris 2</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 6 -->
+          <button onclick="openImageModal('6.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-red-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="6.png" alt="Design 06" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Divisi Kesekre</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 7 -->
+          <button onclick="openImageModal('11.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-blue-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="11.png" alt="Design 11" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Divisi Perkap</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 8 -->
+          <button onclick="openImageModal('23.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-purple-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="23.png" alt="Design 23" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Divisi Kepelatihan</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 9 -->
+          <button onclick="openImageModal('38.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-amber-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="38.png" alt="Design 38" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Divisi Danton</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 10 -->
+          <button onclick="openImageModal('43.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-red-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="43.png" alt="Design 43" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Divisi Humas</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 11 -->
+          <button onclick="openImageModal('49.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-blue-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="49.png" alt="Design 49" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Divisi Kewirausahaan</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Movie 12 -->
+          <button onclick="openImageModal('61.png')" class="snap-start shrink-0 w-36 sm:w-52 group cursor-pointer text-left">
+            <div class="aspect-[2/3] rounded-xl overflow-hidden relative bg-neutral-900 border border-white/10 shadow-xl group-hover:border-purple-500/60 group-hover:scale-[1.03] group-hover:-translate-y-1 transition-all duration-300">
+              <img src="61.png" alt="Design 61" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-3">
+                <p class="text-xs sm:text-sm font-bold text-white drop-shadow">Divisi Kreatif</p>
+              </div>
+            </div>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER / CALL TO ACTION                    -->
+    <!-- ========================================== -->
+    <footer id="report" class="text-center py-12 border-t border-white/10 space-y-6">
+      <div class="space-y-2">
+        <h3 class="text-4xl sm:text-6xl font-black text-white">Ready to Collaborate?</h3>
+        <p class="text-brand-muted text-sm sm:text-lg max-w-xl mx-auto font-normal">
+          Let's create something together
+        </p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4 pt-2">
+        <a href="https://www.instagram.com/tcenghhh/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" class="bg-[#BDFF00] text-black font-extrabold text-sm px-8 py-3.5 rounded-full hover:bg-[#a3dc00] hover:scale-105 transition-all shadow-lg glow-lime">
+          Contact Me
+        </a>
+        <a href="#" class="glass-pill text-white font-bold text-sm px-8 py-3.5 rounded-full hover:bg-white/10 transition-all">
+          View My Work
+        </a>
+      </div>
+      <p class="text-xs text-brand-muted pt-8">© 2026 Studio Portfolio. Designed with Stitch & Tailwind CSS v4.</p>
+    </footer>
+
+  </main>
+
+  <!-- Lucide Icons Initialization Script -->
+  <script>
+    lucide.createIcons();
+
+    // Modal Controls for 3D Carousel Cards
+    function openProjectModal(title, category, description, icon, colorHex) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalCategory').innerText = category;
+      document.getElementById('modalDescription').innerText = description;
+      document.getElementById('modalIcon').innerText = icon;
+      
+      const modal = document.getElementById('projectModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Image Lightbox for Manual Works
+    function openImageModal(src) {
+      document.getElementById('imageModalImg').src = src;
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeImageModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Video Lightbox for Carousel
+    function openVideoModal(src) {
+      const video = document.getElementById('videoModalVideo');
+      video.src = src;
+      const modal = document.getElementById('videoModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeVideoModal() {
+      const video = document.getElementById('videoModalVideo');
+      video.pause();
+      video.src = '';
+      const modal = document.getElementById('videoModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Auto-scroll for Organization movie carousel
+    (function () {
+      var carousel = document.getElementById('orgCarousel');
+      if (!carousel) return;
+      var speed = 0.6;
+      var paused = false;
+      carousel.addEventListener('mouseenter', function () { paused = true; });
+      carousel.addEventListener('mouseleave', function () { paused = false; });
+      function step() {
+        var max = carousel.scrollWidth - carousel.clientWidth;
+        if (carousel.scrollLeft >= max) {
+          carousel.scrollLeft = 0;
+        } else {
+          carousel.scrollLeft += speed;
+        }
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    })();
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeProjectModal();
+        closeImageModal();
+        closeVideoModal();
+      }
+    });
+  </script>
+</body>
+</html>

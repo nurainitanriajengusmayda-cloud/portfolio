@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#030303">
+  <meta name="description" content="Interactive portfolio of a Motion Graphic Designer and Video Editor.">
+  <title>Portfolio</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23030303'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='16' font-weight='800' fill='%23BDFF00' text-anchor='middle'%3ESP%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS v4 (browser build) — css-first @theme via text/tailwindcss style below -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-primary: #BDFF00;
+      --color-chrome-light: #FFFFFF;
+      --color-chrome-mid: #A1A1AA;
+      --color-chrome-dark: #3F3F46;
+      --color-background: #030303;
+      --color-surface-dark: #121318;
+      --color-surface-card: #101010;
+      --color-text-secondary: #8E8E93;
+      --color-glow-yellow: #FFD700;
+      --color-glow-magenta: #FF007F;
+      --color-glow-cyan: #00FFFF;
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary: #BDFF00;
+      --chrome1: #FFFFFF;
+      --chrome2: #D4D4D8;
+      --chrome3: #A1A1AA;
+      --chrome4: #71717A;
+      --chrome5: #3F3F46;
+      --sp-primary: #BDFF00;
+
+      --ring-z: 460px;
+      --proj-w: 240px;
+      --proj-h: 330px;
+      --gcw: 200px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: #030303;
+      background-image:
+        radial-gradient(1200px 600px at 80% -10%, rgba(189, 255, 0, 0.05), transparent 60%),
+        radial-gradient(1000px 500px at 10% 10%, rgba(0, 255, 255, 0.04), transparent 60%);
+      color: #FFFFFF;
+      font-family: "Inter", "Geist", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: #BDFF00; color: #030303; }
+
+    button, input { font: inherit; color: inherit; }
+    button { background: none; border: none; cursor: pointer; }
+
+    .font-display { font-family: "Geist", "Inter", sans-serif; }
+
+    .section { padding: 96px 24px 128px; }
+    .wrap { max-width: 1150px; margin: 0 auto; position: relative; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #8E8E93; margin-bottom: 18px;
+    }
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: linear-gradient(90deg, #BDFF00, transparent); }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 120px 24px;
+      overflow: hidden;
+    }
+
+    .spotlight {
+      position: absolute;
+      left: 50%; bottom: -18%;
+      width: 1500px; height: 800px;
+      transform: translateX(-50%);
+      background: radial-gradient(
+        ellipse at 50% 100%,
+        rgba(255, 215, 0, 0.32) 0%,
+        rgba(255, 0, 127, 0.20) 42%,
+        rgba(255, 122, 0, 0.10) 58%,
+        transparent 74%
+      );
+      pointer-events: none;
+      animation: breathe 9s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { opacity: .85; transform: translateX(-50%) scale(1); }
+      50%      { opacity: 1;   transform: translateX(-50%) scale(1.06); }
+    }
+
+    .hero-in { position: relative; z-index: 2; max-width: 980px; }
+
+    .chrome-wrap {
+      position: relative;
+      display: inline-block;
+      margin-top: 46px;
+    }
+
+    .chrome {
+      font-family: "Geist", "Inter", sans-serif;
+      font-weight: 800;
+      font-size: clamp(3.2rem, 13vw, 8rem);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: transparent;
+      background: linear-gradient(
+        180deg,
+        #FFFFFF 0%,
+        #FFFFFF 20%,
+        #E4E4E7 36%,
+        #A1A1AA 50%,
+        #71717A 64%,
+        #3F3F46 82%,
+        #27272A 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .chrome-shine {
+      position: relative;
+    }
+    .chrome-shine::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      color: transparent;
+      background: linear-gradient(
+        115deg,
+        transparent 32%,
+        rgba(255, 255, 255, 0.9) 44%,
+        rgba(190, 220, 255, 0.6) 50%,
+        transparent 60%
+      );
+      background-size: 280% 100%;
+      background-position: 160% 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: sheen 4.5s ease-in-out infinite;
+    }
+    @keyframes sheen {
+      0%, 55% { background-position: 160% 0; }
+      100%    { background-position: -80% 0; }
+    }
+
+    /* Torn paper tape badge */
+    .tape {
+      position: absolute;
+      top: -34px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-4deg);
+      z-index: 5;
+      padding: 10px 34px;
+      font-family: "Geist", "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      color: #161616;
+      background: linear-gradient(180deg, #FFFEF7 0%, #EEECE0 100%);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.55);
+      clip-path: polygon(
+        0% 0%, 3% 8%, 7% 3%, 12% 10%, 17% 4%, 23% 11%, 29% 5%, 35% 12%,
+        42% 6%, 49% 13%, 56% 5%, 63% 12%, 70% 6%, 77% 13%, 84% 5%,
+        90% 12%, 95% 7%, 100% 0%,
+        96% 94%, 92% 100%, 87% 95%, 81% 100%, 75% 93%, 68% 99%,
+        61% 92%, 54% 99%, 47% 92%, 40% 99%, 33% 92%, 26% 100%,
+        20% 93%, 14% 100%, 8% 95%, 3% 98%, 0% 100%
+      );
+    }
+
+    .hero-sub {
+      margin-top: 30px;
+      font-size: clamp(1rem, 2.4vw, 1.25rem);
+      color: #8E8E93;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .skill-pills {
+      margin-top: 44px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .pill {
+      padding: 12px 26px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      background: rgba(255, 255, 255, 0.02);
+      color: #E4E4E7;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .pill:hover {
+      border-color: #BDFF00;
+      color: #BDFF00;
+      box-shadow: 0 0 26px rgba(189, 255, 0, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      width: 24px; height: 40px;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 9999px;
+      display: grid;
+      place-items: start center;
+      padding-top: 7px;
+    }
+    .scroll-hint::before {
+      content: "";
+      width: 4px; height: 9px;
+      border-radius: 9999px;
+      background: #BDFF00;
+      animation: hintdrop 1.8s ease-in-out infinite;
+    }
+    @keyframes hintdrop {
+      0%        { transform: translateY(-2px); opacity: 0; }
+      30%, 70%  { opacity: 1; }
+      100%      { transform: translateY(14px); opacity: 0; }
+    }
+
+    /* ============ GAME STORE ============ */
+    .store-card {
+      position: relative;
+      border-radius: 36px;
+      background: #121318;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 28px 30px 44px;
+      box-shadow: 0 50px 120px rgba(0, 0, 0, 0.6);
+      overflow: visible;
+    }
+
+    .store-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 36px;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 34px 34px;
+      -webkit-mask-image: radial-gradient(130% 130% at 50% 20%, #000 40%, transparent 100%);
+      mask-image: radial-gradient(130% 130% at 50% 20%, #000 40%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .store-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .store-nav { display: flex; gap: 22px; font-size: 13.5px; font-weight: 500; color: #A1A1AA; }
+    .store-nav a { color: inherit; text-decoration: none; letter-spacing: 0.02em; transition: color 0.25s ease; }
+    .store-nav a:hover, .store-nav a.active { color: #FFFFFF; }
+
+    .switch-logo {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      padding: 10px 22px;
+      transition: box-shadow 0.3s ease;
+    }
+    .switch-logo:hover { box-shadow: 0 0 0 4px rgba(189, 255, 0, 0.12); }
+
+    .store-right { display: flex; align-items: center; gap: 12px; }
+
+    .search-box {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 8px 14px;
+      width: 190px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .search-box:focus-within {
+      border-color: #BDFF00;
+      box-shadow: 0 0 0 3px rgba(189, 255, 0, 0.15);
+    }
+    .search-box input {
+      background: none; border: none; outline: none;
+      width: 100%;
+      font-size: 12.5px;
+      color: #fff;
+    }
+    .search-box input::placeholder { color: #6b6b72; }
+
+    .coin-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: linear-gradient(180deg, #FFE35C, #FFB800 55%, #F5A800);
+      color: #4a3200;
+      font-size: 12px; font-weight: 700;
+      padding: 8px 16px; border-radius: 9999px;
+      box-shadow: 0 6px 18px rgba(255, 184, 0, 0.25);
+      white-space: nowrap;
+    }
+
+    .store-headline {
+      position: relative; z-index: 2;
+      margin: 40px 4px 8px;
+      font-family: "Geist", "Inter", sans-serif;
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .store-headline .dot {
+      width: 10px; height: 10px; border-radius: 9999px;
+      background: #BDFF00;
+      box-shadow: 0 0 18px rgba(189, 255, 0, 0.9);
+    }
+
+    /* 3D fan stack */
+    .fan-stage {
+      position: relative;
+      height: 400px;
+      margin-top: 6px;
+      perspective: 1100px;
+    }
+
+    .game-card {
+      position: absolute;
+      width: var(--gcw);
+      border-radius: 22px;
+      overflow: hidden;
+      background: #101010;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65);
+      transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.15), box-shadow 0.45s ease, border-color 0.45s ease, opacity 0.45s ease;
+      will-change: transform;
+      opacity: 0.96;
+    }
+
+    .game-card .art {
+      height: var(--gcw);
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .game-card .label {
+      padding: 10px 14px 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      background: #101010;
+    }
+    .game-card .label .plat { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; color: #8E8E93; text-transform: uppercase; }
+    .game-card .label .chip { font-size: 10px; font-weight: 700; color: #030303; background: #BDFF00; border-radius: 9999px; padding: 3px 9px; }
+
+    .gc-fortnite { left: 0%;    transform: rotateY(26deg) translateZ(-34px); z-index: 1; }
+    .gc-mario    { left: 20.9%; transform: rotateY(13deg) translateZ(-16px); z-index: 2; }
+    .gc-kirby    { left: 41%;   transform: translateY(-18px) scale(1.06);    z-index: 6; }
+    .gc-pokemon  { left: 61.9%; transform: rotateY(-13deg) translateZ(-16px); z-index: 2; }
+    .gc-splatoon { left: 81.9%; transform: rotateY(-26deg) translateZ(-34px); z-index: 1; }
+
+    .game-card:hover {
+      transform: translateY(-24px) scale(1.12) translateZ(40px);
+      z-index: 40;
+      border-color: #BDFF00;
+      opacity: 1;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 46px rgba(189, 255, 0, 0.32);
+    }
+
+    .art-fortnite  { background: linear-gradient(150deg, #7B2BFF 0%, #3B82F6 48%, #06B6D4 100%); }
+    .art-mario     { background: linear-gradient(160deg, #FF5141 0%, #E4002B 70%, #A10B22 100%); }
+    .art-kirby     { background: linear-gradient(160deg, #FFE4F0 0%, #FF9FD0 60%, #FF6FB0 100%); }
+    .art-pokemon   { background: linear-gradient(180deg, #E5353A 0%, #E5353A 55%, #FFFFFF 55%, #FFFFFF 100%); }
+    .art-splatoon  { background: linear-gradient(155deg, #FFF36B 0%, #FFE330 50%, #00E0C6 130%); }
+
+    .art-text {
+      font-family: "Geist", "Inter", sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: rgba(255, 255, 255, 0.96);
+      text-align: center;
+      line-height: 0.95;
+      text-shadow: 0 4px 22px rgba(0, 0, 0, 0.4);
+    }
+    .art-text small { display: block; font-size: 0.42em; font-weight: 700; letter-spacing: 0.28em; margin-top: 8px; opacity: .92; }
+
+    .art-kirby .art-text { color: #84265F; text-shadow: 0 2px 10px rgba(255, 255, 255, 0.6); }
+    .art-splatoon .art-text { color: #111; text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); }
+
+    .pokemon-band {
+      position: absolute; inset: auto 0 0 0; height: 8px;
+      background: #1C1C1E;
+      box-shadow: 0 0 0 1px #000;
+    }
+
+    /* ============ A YEAR OF BUILDING ============ */
+    .yr-section { padding-top: 60px; }
+    .yr-title {
+      font-family: "Geist", "Inter", sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.1rem, 7.5vw, 4.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+    }
+    .yr-title .hl { color: #BDFF00; text-shadow: 0 0 30px rgba(189, 255, 0, 0.5); }
+
+    .stage3d {
+      position: relative;
+      height: 430px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 44px;
+      perspective: 1300px;
+      cursor: grab;
+    }
+
+    .ring {
+      position: relative;
+      width: var(--proj-w);
+      height: var(--proj-h);
+      transform-style: preserve-3d;
+      animation: spin3d 44s linear infinite;
+    }
+    .stage3d:hover .ring { animation-play-state: paused; }
+
+    @keyframes spin3d {
+      from { transform: rotateY(0deg); }
+      to   { transform: rotateY(360deg); }
+    }
+
+    .proj-card {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: var(--proj-w);
+      height: var(--proj-h);
+      margin-top: calc(var(--proj-h) / -2);
+      margin-left: calc(var(--proj-w) / -2);
+      border-radius: 24px;
+      overflow: hidden;
+      text-align: left;
+      background: #101010;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.72);
+      transform: rotateY(var(--a)) translateZ(var(--ring-z)) scale(1);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+    }
+    .proj-card:hover {
+      transform: rotateY(var(--a)) translateZ(var(--ring-z)) translateZ(26px) scale(1.07);
+      border-color: #BDFF00;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.85), 0 0 44px rgba(189, 255, 0, 0.3);
+    }
+    .proj-card:focus-visible { outline: 2px solid #BDFF00; outline-offset: 3px; }
+
+    .proj-art {
+      position: relative;
+      height: 54%;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .proj-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 100% at 70% 0%, rgba(255, 255, 255, 0.22), transparent 55%);
+    }
+    .proj-num {
+      font-family: "Geist", "Inter", sans-serif;
+      font-size: 64px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.30);
+      letter-spacing: -0.04em;
+      position: relative;
+      z-index: 1;
+    }
+    .proj-letter {
+      position: absolute;
+      bottom: 10px; right: 14px;
+      font-size: 15px; font-weight: 800; letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.85);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+    .proj-ft { padding: 14px 16px 16px; }
+    .proj-ft h4 {
+      margin: 0 0 10px;
+      font-family: "Geist", "Inter", sans-serif;
+      font-size: 16px; font-weight: 700; letter-spacing: -0.01em;
+      color: #fff;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .proj-ft-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #BDFF00;
+      border: 1px solid rgba(189, 255, 0, 0.55);
+      border-radius: 9999px;
+      padding: 4px 10px;
+    }
+    .yr { font-size: 12px; color: #8E8E93; font-weight: 600; }
+
+    /* ============ MODAL ============ */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    }
+    .modal.active {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    .modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(3, 3, 3, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .modal-panel {
+      position: relative;
+      width: min(560px, 100%);
+      max-height: 86vh;
+      overflow: auto;
+      border-radius: 24px;
+      background: #121318;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 60px 140px rgba(0, 0, 0, 0.8);
+      transform: translateY(16px) scale(0.97);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+    }
+    .modal.active .modal-panel { transform: translateY(0) scale(1); }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 14px;
+      z-index: 3;
+      width: 36px; height: 36px;
+      border-radius: 9999px;
+      display: grid; place-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 18px; color: #fff;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .modal-close:hover { background: rgba(255, 255, 255, 0.16); border-color: #BDFF00; }
+    .modal-close:focus-visible { outline: 2px solid #BDFF00; outline-offset: 2px; }
+
+    .modal-art { height: 150px; display: grid; place-items: end start; padding: 20px 26px; }
+    .modal-art .modal-big {
+      font-family: "Geist", "Inter", sans-serif;
+      font-size: 52px; font-weight: 800; line-height: 1;
+      color: rgba(0, 0, 0, 0.85);
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+    }
+    .modal-body { padding: 22px 26px 28px; }
+    .modal-body h3 {
+      margin: 0 0 6px;
+      font-family: "Geist", "Inter", sans-serif;
+      font-size: 26px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .modal-meta { display: flex; flex-wrap: wrap; gap: 16px; color: #8E8E93; font-size: 13px; margin-bottom: 16px; }
+    .modal-meta b { color: #E4E4E7; font-weight: 600; }
+    .modal-desc { color: #C4C4CC; font-size: 14.5px; line-height: 1.7; margin: 0 0 20px; }
+    .modal-tools { display: flex; flex-wrap: wrap; gap: 9px; }
+    .modal-tools span {
+      font-size: 12px; font-weight: 500;
+      color: #BDFF00;
+      border: 1px solid rgba(189, 255, 0, 0.4);
+      border-radius: 9999px;
+      padding: 6px 14px;
+      background: rgba(189, 255, 0, 0.06);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px 64px;
+      color: #5f5f66;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+    footer b { color: #A1A1AA; font-weight: 600; }
+
+    :focus-visible { outline: 2px solid #BDFF00; outline-offset: 3px; }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 900px) {
+      :root { --ring-z: 340px; --proj-w: 200px; --proj-h: 280px; --gcw: 135px; }
+      .fan-stage { height: 280px; }
+      .store-nav { display: none; }
+      .search-box { width: 130px; }
+      .gc-kirby { transform: translateY(-12px) scale(1.06); }
+      .store-card { padding: 22px 18px 30px; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --ring-z: 250px; --proj-w: 158px; --proj-h: 226px; --gcw: 116px; }
+      .section { padding: 76px 16px 96px; }
+      .stage3d { height: 320px; perspective: 900px; }
+      .proj-num { font-size: 44px; }
+      .proj-ft { padding: 10px 12px 12px; }
+      .proj-ft h4 { font-size: 13px; }
+      .badge { font-size: 8px; padding: 3px 8px; }
+      .yr { font-size: 10px; }
+      .fan-stage { height: 235px; }
+      .search-box { width: 34px; justify-content: center; }
+      .search-box input { display: none; }
+      .switch-logo { padding: 8px 14px; }
+      .coin-badge { padding: 6px 12px; font-size: 11px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ring { animation: none; }
+      .chrome-shine::after { animation: none; background-position: 100% 0; }
+      .spotlight { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <!-- ============ 1. HERO ============ -->
+    <header class="hero">
+      <div class="spotlight" aria-hidden="true"></div>
+
+      <div class="hero-in">
+        <div class="chrome-wrap">
+          <h1 class="chrome chrome-shine" data-text="PORTFOLIO">PORTFOLIO</h1>
+        </div>
+
+        <p class="hero-sub">Motion Graphic Designer and Video Editor</p>
+
+        <div class="skill-pills" aria-label="Software skills">
+          <span class="pill">Adobe Illustrator</span>
+          <span class="pill">Canva</span>
+          <span class="pill">CapCut</span>
+        </div>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true"></div>
+    </header>
+
+    <!-- ============ 2. GAME STORE CONTAINER ============ -->
+    <section class="section" id="store" aria-labelledby="store-title">
+      <div class="wrap">
+        <span class="eyebrow">UI Concept — Nintendo Switch Store</span>
+
+        <div class="store-card">
+          <div class="store-top">
+            <nav class="store-nav" aria-label="Store navigation">
+              <a href="#" class="active">Games</a>
+              <a href="#">Store</a>
+            </nav>
+
+            <span class="switch-logo" role="img" aria-label="Nintendo Switch">
+              <svg width="42" height="18" viewBox="0 0 46 20" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="14" height="18" rx="4" fill="#E4002B"/>
+                <circle cx="8" cy="10" r="3.4" fill="#E4002B" stroke="#fff" stroke-width="1.4"/>
+                <circle cx="8" cy="5.2" r="1.6" fill="#fff"/>
+                <rect x="15.5" y="1.5" width="14" height="17" rx="5" fill="#1C1C1E"/>
+                <circle cx="22.5" cy="10" r="3.4" fill="#1C1C1E" stroke="#3F3F46" stroke-width="1"/>
+                <circle cx="22.5" cy="5.2" r="1.6" fill="#71717A"/>
+                <rect x="30" y="1" width="14" height="18" rx="4" fill="#00C3F2"/>
+                <circle cx="37" cy="10" r="3.4" fill="#00C3F2" stroke="#fff" stroke-width="1.4"/>
+                <circle cx="37" cy="14.8" r="1.6" fill="#fff"/>
+              </svg>
+            </span>
+
+            <div class="store-right">
+              <label class="search-box">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.4" stroke-linecap="round">
+                  <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+                </svg>
+                <input type="search" placeholder="Search games…" aria-label="Search games">
+              </label>
+              <span class="coin-badge" title="Gold coin balance">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#4A3200">
+                  <circle cx="12" cy="12" r="10"/>
+                  <circle cx="12" cy="12" r="7" fill="none" stroke="#FFE9A8" stroke-width="1.6"/>
+                  <circle cx="12" cy="12" r="2" fill="#FFE9A8"/>
+                </svg>
+                <span>1 290.0000</span>
+              </span>
+            </div>
+          </div>
+
+          <h2 class="store-headline" id="store-title">
+            Fun Games Nintendo Switch
+            <span class="dot" aria-hidden="true"></span>
+          </h2>
+
+          <div class="fan-stage" aria-label="Featured games in 3D fan stack">
+            <article class="game-card gc-fortnite" tabindex="0" aria-label="Fortnite">
+              <div class="art art-fortnite">
+                <div class="art-text" style="font-size:44px">FORNITE<small>Battle Royale</small></div>
+              </div>
+              <div class="label"><span class="plat">Nintendo Switch</span><span class="chip">NSW</span></div>
+            </article>
+
+            <article class="game-card gc-mario" aria-label="Mario">
+              <div class="art art-mario">
+                <div class="art-text" style="font-size:40px">MARIO<small>Super Adventure</small></div>
+              </div>
+              <div class="label"><span class="plat">Nintendo Switch</span><span class="chip">NSW</span></div>
+            </article>
+
+            <article class="game-card gc-kirby" aria-label="Kirby and the Forgotten Land">
+              <div class="art art-kirby">
+                <div class="art-text" style="font-size:34px">KIRBY<small>Forgotten Land</small></div>
+              </div>
+              <div class="label"><span class="plat">Nintendo Switch</span><span class="chip">NSW</span></div>
+            </article>
+
+            <article class="game-card gc-pokemon" aria-label="Pokémon Legends Arceus">
+              <div class="art art-pokemon">
+                <div class="pokemon-band"></div>
+                <div class="art-text" style="font-size:26px; color:#3B5BDB; margin-top:14px">POKÉMON<small>Legends Arceus</small></div>
+              </div>
+              <div class="label"><span class="plat">Nintendo Switch</span><span class="chip">NSW</span></div>
+            </article>
+
+            <article class="game-card gc-splatoon" aria-label="Splatoon 3">
+              <div class="art art-splatoon">
+                <div class="art-text" style="font-size:44px">3<small>Splatoon 3</small></div>
+              </div>
+              <div class="label"><span class="plat">Nintendo Switch</span><span class="chip">NSW</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. A YEAR OF BUILDING ============ -->
+    <section class="section yr-section" id="year" aria-labelledby="year-title">
+      <div class="wrap">
+        <span class="eyebrow">Showreel — Interactive 3D Ring</span>
+        <h2 class="yr-title" id="year-title">A Year of <span class="hl">Building</span></h2>
+        <p style="max-width:520px; color:#8E8E93; line-height:1.7; font-size:15px; margin-top:14px;">
+          Ten selected projects crafted across motion, edit and design. Hover to pause the ring, click any card to open its case study.
+        </p>
+      </div>
+
+      <div class="wrap" style="max-width:1350px;">
+        <div class="stage3d" id="stage3d" aria-label="3D project carousel, auto-rotating">
+          <div class="ring" id="ring"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Motion Graphic Designer &amp; Video Editor © 2026
+  </footer>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal" id="pm" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+      <button class="modal-close" data-close aria-label="Close project details">✕</button>
+      <div class="modal-art" id="pm-art"><span class="modal-big" id="pm-big"></span></div>
+      <div class="modal-body">
+        <h3 id="pm-title"></h3>
+        <div class="modal-meta">
+          <span><b>Role:</b> <span id="pm-role"></span></span>
+          <span><b>Duration:</b> <span id="pm-dur"></span></span>
+        </div>
+        <p class="modal-desc" id="pm-desc"></p>
+        <div class="modal-tools" id="pm-tools"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const projects = [
+      { t: "Neon City Promo",     tag: "Motion",      y: "2026", c: ["#FF007F", "#7A00FF"], mark: "N",
+        role: "Designer & Animator", dur: "2 weeks",
+        tools: ["After Effects", "C4D", "Illustrator"],
+        desc: "A high-octane city promo exploring neon reflections, camera sweeps and particle rain. Built with multi-pass renders and a color-grade inspired by 80s synthwave film." },
+      { t: "Brand Launch Film",   tag: "Branding",    y: "2026", c: ["#FFD700", "#FF7A00"], mark: "B",
+        role: "Motion Designer", dur: "3 weeks",
+        tools: ["After Effects", "Cinema 4D"],
+        desc: "An identity film that brings a new brand mark to life — from geometry deconstruction to a cinematic reveal, matched with a custom sound design by the client." },
+      { t: "Music Visualizer",    tag: "Audio",       y: "2025", c: ["#BDFF00", "#00FFFF"], mark: "W",
+        role: "Creator & Editor", dur: "1 week",
+        tools: ["After Effects", "Premiere Pro"],
+        desc: "Real-time feel visualizer synced to a lo-fi track: waveform bars, beat-sliced flashes and chromatic glitch transitions, cut entirely to the beat map." },
+      { t: "Product Teaser 3D",   tag: "3D Design",   y: "2026", c: ["#00C2FF", "#0057FF"], mark: "T",
+        role: "3D Artist & Animator", dur: "4 weeks",
+        tools: ["Cinema 4D", "Redshift", "After Effects"],
+        desc: "Sculpted and rendered a hero product in 3D with studio lighting, liquid metal drips and macro camera moves. Final comp composited with live-action plates." },
+      { t: "Kinetic Typography",  tag: "Type",        y: "2025", c: ["#FFFFFF", "#A1A1AA"], mark: "K",
+        role: "Motion Designer", dur: "2 weeks",
+        tools: ["After Effects", "Illustrator"],
+        desc: "A typographic manifesto driven by rhythm — oversized statements that smash, ripple and reassemble. Focused on pacing, hierarchy and negative space." },
+      { t: "Documentary Edit",    tag: "Editing",     y: "2025", c: ["#3F3F46", "#101010"], mark: "D",
+        role: "Lead Editor", dur: "6 weeks",
+        tools: ["Premiere Pro", "DaVinci Resolve", "Audition"],
+        desc: "Structural edit of a 40-minute documentary: story arc, interview selects, archival restoration and a muted cinematic grade built around human warmth." },
+      { t: "Title Sequence",      tag: "Film",        y: "2026", c: ["#FF9F00", "#FF2440"], mark: "T",
+        role: "Title Designer", dur: "1 week",
+        tools: ["After Effects", "Photoshop"],
+        desc: "Hand-crafted opening titles for a short film — layered 35mm grain, ink drips and a slow pull-through reveal that sets the film's mood in 40 seconds." },
+      { t: "Social Ads Pack",     tag: "Ads",         y: "2025", c: ["#7C5CFF", "#FF5C8A"], mark: "S",
+        role: "Designer & Editor", dur: "3 weeks",
+        tools: ["Premiere Pro", "After Effects", "Photoshop"],
+        desc: "A modular ad system: 12 formats, 3 ratios, endless crops — hook-first openers, bold captions and loop-ready cuts tuned for platform ad behavior." },
+      { t: "Loop Reel Showcase",  tag: "Showreel",    y: "2026", c: ["#00FF9D", "#0057FF"], mark: "L",
+        role: "Director & Editor", dur: "2 weeks",
+        tools: ["After Effects", "Premiere Pro", "C4D"],
+        desc: "A self-directed loop reel showcasing 9 styles in one continuous spin — from chrome type to liquid 3D — cut to a single seamless audio bed." },
+      { t: "Game Trailer Cut",    tag: "Editing",     y: "2025", c: ["#FF3B30", "#7A00FF"], mark: "G",
+        role: "Trailer Editor", dur: "3 weeks",
+        tools: ["Premiere Pro", "After Effects"],
+        desc: "A 60-second announcement trailer cut from raw gameplay: beat-mapped transitions, stylized speed ramps and sound-synced UI flashes for maximum hype." }
+    ];
+
+    const ring = document.getElementById("ring");
+    const n = projects.length;
+    const step = 360 / n;
+
+    projects.forEach((p, i) => {
+      const card = document.createElement("button");
+      card.className = "proj-card";
+      card.type = "button";
+      card.style.setProperty("--a", i * step + "deg");
+      card.dataset.i = i;
+      card.setAttribute("aria-haspopup", "dialog");
+      card.setAttribute("aria-label", p.t + " — open case study");
+      card.innerHTML =
+        '<div class="proj-art" style="background:linear-gradient(160deg, ' + p.c[0] + ', ' + p.c[1] + ')">' +
+          '<span class="proj-num">' + String(i + 1).padStart(2, "0") + '</span>' +
+          '<span class="proj-letter">' + p.mark + '</span>' +
+        '</div>' +
+        '<div class="proj-ft">' +
+          '<h4>' + p.t + '</h4>' +
+          '<div class="proj-ft-row"><span class="badge">' + p.tag + '</span><span class="yr">' + p.y + '</span></div>' +
+        '</div>';
+      ring.appendChild(card);
+    });
+
+    const modal = document.getElementById("pm");
+    const pmTitle = document.getElementById("pm-title");
+    const pmRole = document.getElementById("pm-role");
+    const pmDur = document.getElementById("pm-dur");
+    const pmDesc = document.getElementById("pm-desc");
+    const pmTools = document.getElementById("pm-tools");
+    const pmArt = document.getElementById("pm-art");
+    const pmBig = document.getElementById("pm-big");
+    const closeBtn = modal.querySelector(".modal-close");
+    let lastFocus = null;
+
+    function openModal(i) {
+      const p = projects[i];
+      pmTitle.textContent = p.t;
+      pmRole.textContent = p.role;
+      pmDur.textContent = p.dur;
+      pmDesc.textContent = p.desc;
+      pmTools.innerHTML = p.tools.map(t => "<span>" + t + "</span>").join("");
+      pmArt.style.background = "linear-gradient(160deg, " + p.c[0] + ", " + p.c[1] + ")";
+      pmBig.textContent = p.mark;
+      lastFocus = document.activeElement;
+      modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocus) lastFocus.focus();
+    }
+
+    ring.addEventListener("click", (e) => {
+      const card = e.target.closest(".proj-card");
+      if (card) openModal(parseInt(card.dataset.i, 10));
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target.closest("[data-close]")) closeModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("active")) closeModal();
+      if (e.key === "Tab" && modal.classList.contains("active")) {
+        const focusables = modal.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
+        const list = Array.prototype.filter.call(focusables, (el) => !el.disabled);
+        const first = list[0];
+        const last = list[list.length - 1];
+        if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+        else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
+      }
+    });
+  </script>
+</body>
+</html>
